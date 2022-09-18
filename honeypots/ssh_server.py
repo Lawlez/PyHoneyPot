@@ -43,8 +43,8 @@ class QSSHServer():
             self.logs = setup_logger(__class__.__name__, self.uuid, None)
         self.ip = kwargs.get('ip', None) or (hasattr(self, 'ip') and self.ip) or '0.0.0.0'
         self.port = (kwargs.get('port', None) and int(kwargs.get('port', None))) or (hasattr(self, 'port') and self.port) or 22
-        self.username = kwargs.get('username', None) or (hasattr(self, 'username') and self.username) or 'test'
-        self.password = kwargs.get('password', None) or (hasattr(self, 'password') and self.password) or 'test'
+        self.username = kwargs.get('username', None) or (hasattr(self, 'username') and self.username)
+        self.password = kwargs.get('password', None) or (hasattr(self, 'password') and self.password)
         self.options = kwargs.get('options', '') or (hasattr(self, 'options') and self.options) or getenv('HONEYPOTS_OPTIONS', '') or ''
         self.ansi = rcompile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
 
@@ -124,6 +124,7 @@ class QSSHServer():
                 t.start_server(server=sshhandle)
                 conn = t.accept(30)
                 if "interactive" in _q_s.options and conn is not None:
+                    #ssh header
                     conn.send("Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.10.60.1-microsoft-standard-WSL2 x86_64)\r\n\r\n")
                     current_time = time()
                     while True and time() < current_time + 10:

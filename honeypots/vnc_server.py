@@ -41,8 +41,8 @@ class QVNCServer():
             self.logs = setup_logger(__class__.__name__, self.uuid, None)
         self.ip = kwargs.get('ip', None) or (hasattr(self, 'ip') and self.ip) or '0.0.0.0'
         self.port = (kwargs.get('port', None) and int(kwargs.get('port', None))) or (hasattr(self, 'port') and self.port) or 5900
-        self.username = kwargs.get('username', None) or (hasattr(self, 'username') and self.username) or 'test'
-        self.password = kwargs.get('password', None) or (hasattr(self, 'password') and self.password) or 'test'
+        self.username = kwargs.get('username', None) or (hasattr(self, 'username') and self.username) or 'test' #needs fix
+        self.password = kwargs.get('password', None) or (hasattr(self, 'password') and self.password) or 'test' #needs fix
         self.options = kwargs.get('options', '') or (hasattr(self, 'options') and self.options) or getenv('HONEYPOTS_OPTIONS', '') or ''
         disable_logger(1, tlog)
 
