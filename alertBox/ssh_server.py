@@ -10,17 +10,24 @@
 //  -------------------------------------------------------------
 '''
 
+'''
+*******************************************************
+**************  refactored by lawlez  *****************
+*******************************************************
+'''
+
+
 from warnings import filterwarnings
 filterwarnings(action='ignore', module='.*paramiko.*')
 
 from paramiko import RSAKey, ServerInterface, Transport, OPEN_SUCCEEDED, AUTH_PARTIALLY_SUCCESSFUL, AUTH_SUCCESSFUL, OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED, OPEN_SUCCEEDED, AUTH_FAILED
-from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR, getfqdn
+from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from _thread import start_new_thread
 from io import StringIO
 from random import choice
 from subprocess import Popen
 from os import path, getenv
-from helper import check_if_server_is_running, close_port_wrapper, get_free_port, kill_server_wrapper, set_local_vars, setup_logger
+from helper import check_if_server_is_running, close_port_wrapper, get_free_port, kill_server_wrapper, setup_logger
 from uuid import uuid4
 from contextlib import suppress
 from re import compile as rcompile
